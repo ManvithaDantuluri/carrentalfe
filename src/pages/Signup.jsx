@@ -7,11 +7,11 @@ export default function Signup() {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
   const navigate = useNavigate();
 
-  // ✅ Automatically detect environment
+  // ✅ Base URL for backend (using HTTPS on port 30083)
   const BASE_URL =
     window.location.hostname === "localhost"
-      ? "http://localhost:8081"
-      : "http://backend:8081";
+      ? "https://localhost:30083"
+      : "https://backend:30083";
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -19,7 +19,8 @@ export default function Signup() {
       const res = await axios.post(`${BASE_URL}/auth/signup`, form);
       alert(res.data);
       navigate("/");
-    } catch {
+    } catch (err) {
+      console.error(err);
       alert("Registration failed. Username or email may already exist.");
     }
   };
