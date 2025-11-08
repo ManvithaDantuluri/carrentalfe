@@ -7,11 +7,11 @@ export default function Login() {
   const [form, setForm] = useState({ username: "", password: "" });
   const navigate = useNavigate();
 
-  // ✅ Automatically detect environment
+  // ✅ Base URL for backend (using HTTPS on port 30083)
   const BASE_URL =
     window.location.hostname === "localhost"
-      ? "http://localhost:8081"
-      : "http://backend:8081";
+      ? "https://localhost:30083"
+      : "https://backend:30083";
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -20,7 +20,8 @@ export default function Login() {
       localStorage.setItem("token", res.data);
       localStorage.setItem("username", form.username);
       navigate("/dashboard");
-    } catch {
+    } catch (err) {
+      console.error(err);
       alert("Invalid credentials. Try again.");
     }
   };
