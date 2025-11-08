@@ -10,8 +10,8 @@ export default function Signup() {
   // ✅ Base URL for backend (using HTTPS on port 30083)
   const BASE_URL =
     window.location.hostname === "localhost"
-      ? "https://localhost:30083"
-      : "https://backend:30083";
+      ? "http://localhost:30083"
+      : "http://backend:30083";
 
   const handleSignup = async (e) => {
     e.preventDefault();
